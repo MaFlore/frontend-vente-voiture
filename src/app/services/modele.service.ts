@@ -19,13 +19,13 @@ export class ModeleService {
 
   //Ajout d'une occurrence de modele;
   //url: http://localhost:9002/api/modele/ajouter
-  addClient(m: Modele): Observable<Modele>{
+  addModele(m: Modele): Observable<Modele>{
     return this.httpClient.post<Modele>(this.url + 'modele/ajouter', m);
   }
 
   //Modification d'une occurrence de modele;
   //url: http://localhost:9002/api/modele/modifier
-  updateClient(m: Modele): Observable<Modele>{
+  updateModele(m: Modele): Observable<Modele>{
     return this.httpClient.put<Modele>(this.url + 'modele/modifier', m);
   }
 

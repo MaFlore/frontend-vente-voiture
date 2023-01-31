@@ -19,13 +19,13 @@ export class MarqueService {
 
   //Ajout d'une occurrence de marque;
   //url: http://localhost:9002/api/marque/ajouter
-  addClient(m: Marque): Observable<Marque>{
+  addMarque(m: Marque): Observable<Marque>{
     return this.httpClient.post<Marque>(this.url + 'marque/ajouter', m);
   }
 
   //Modification d'une occurrence de marque;
   //url: http://localhost:9002/api/marque/modifier
-  updateClient(m: Marque): Observable<Marque>{
+  updateMarque(m: Marque): Observable<Marque>{
     return this.httpClient.put<Marque>(this.url + 'marque/modifier', m);
   }
 
