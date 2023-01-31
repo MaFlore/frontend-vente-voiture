@@ -3,7 +3,6 @@ export class Personne{
   id: number;
   nom: string;
   prenom: string;
-  email: string;
   telephone: string;
   username: string;
   password: string;
@@ -12,7 +11,6 @@ export class Personne{
     this.id = 0;
     this.nom = '';
     this.prenom = '';
-    this.email = '';
     this.telephone = '';
     this.username = '';
     this.password = '';

@@ -36,10 +36,79 @@ export class ClientComponent implements OnInit {
     this.listesClients();
   }
 
+  //Méthode de la liste de tous les clients à partir de ClientService
   listesClients():void{
     this.clientService.getAll().subscribe(response=>{
       this.clients = response;
     })
   }
 
+  afficherFormulaireAjouter(): void {
+    this.voirListesClients = false;
+    this.voirFormulaireAjout = true;
+    this.voirFormulaireModification;
+    this.client = new Client();
+  }
+
+  get nom(){
+    return this.clientForm.get('nom');
+  }
+
+  get prenom(){
+    return this.clientForm.get('prenom');
+  }
+
+  get telephone(){
+    return this.clientForm.get('telephone');
+  }
+
+  get username(){
+    return this.clientForm.get('username');
+  }
+
+  get password(){
+    return this.clientForm.get('password');
+  }
+
+  //Méthode de retour sur la page de la liste des clients
+  retour(): void {
+    this.voirListesClients = true;
+    this.voirFormulaireAjout = false;
+    this.voirFormulaireModification = true;
+    this.voirPageDetail = true;
+    this.erreur = true;
+  }
+
+  //Méthode d'ajout d'un client à partir de ClientService
+  ajouterClient(): void {
+    this.clientService.addClient(this.client).subscribe(
+      (response) =>{
+        console.log(response);
+        if(response.id > 0) {
+          this.clients.push({
+            id: response.id,
+            nom: response.nom,
+            prenom: response.prenom,
+            telephone: response.telephone,
+            username: response.username,
+            password: response.password,
+            ventes: [],
+          });
+          this.retour();
+        }
+        else{
+          this.erreur = false;
+          this.messageErreur = "Erreur lors de l'ajout, client déjà existant"
+          this.afficherFormulaireAjouter();
+          this.client.nom = response.nom;
+          this.client.prenom = response.prenom;
+          this.client.telephone = response.telephone;
+          this.client.username = response.username;
+          this.client.password = response.password;
+        }
+    },
+    (error) =>{
+      console.log(error)
+    })
+  }
 }
