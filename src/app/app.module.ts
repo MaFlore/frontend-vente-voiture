@@ -13,6 +13,7 @@ import { ModeleComponent } from './modele/modele.component';
 import { MarqueComponent } from './marque/marque.component';
 import { VoitureComponent } from './voiture/voiture.component';
 import { HistoriqueComponent } from './historique/historique.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HistoriqueComponent } from './historique/historique.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
