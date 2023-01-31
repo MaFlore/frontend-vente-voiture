@@ -1,0 +1,82 @@
+<div class="app-menu navbar-menu">
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <!-- Dark Logo-->
+        <a href="index.html" class="logo logo-dark">
+            <span class="logo-sm">
+            <img src="./assets/images/logo-sm.png" alt="" height="22">
+        </span>
+            <span class="logo-lg">
+            <img src="./assets/images/logo-dark.png" alt="" height="17">
+        </span>
+        </a>
+        <!-- Light Logo-->
+        <a href="index.html" class="logo logo-light">
+            <span class="logo-sm">
+            <img src="./assets/images/logo-sm.png" alt="" height="22">
+        </span>
+            <span class="logo-lg">
+            <img src="./assets/images/logo-light.png" alt="" height="17">
+        </span>
+        </a>
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+        <i class="ri-record-circle-line"></i>
+    </button>
+    </div>
+
+    <div id="scrollbar">
+        <div class="container-fluid">
+
+            <div id="two-column-menu">
+            </div>
+            <ul class="navbar-nav" id="navbar-nav">
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Accueil</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <i class="ri-bar-chart-2-line"></i> <span data-key="t-widgets">Statistiques</span>
+                    </a>
+                </li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Clients</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" routerLink="/clients" routerLinkActive="active">
+                        <i class="ri-user-3-line"></i> <span data-key="t-widgets">Clients</span>
+                    </a>
+                </li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Modèles</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" routerLink="/modeles" routerLinkActive="active">
+                        <i class="ri-honour-line"></i> <span data-key="t-widgets">Modèles</span>
+                    </a>
+                </li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Marques</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" routerLink="/marques" routerLinkActive="active">
+                        <i class="ri-bookmark-line"></i> <span data-key="t-widgets">Marques</span>
+                    </a>
+                </li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Voitures</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" routerLink="/voitures" routerLinkActive="active">
+                        <i class="ri-car-line"></i> <span data-key="t-widgets">Voitures</span>
+                    </a>
+                </li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Ventes</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" routerLink="/ventes" routerLinkActive="active">
+                        <i class="ri-shopping-bag-2-line"></i> <span data-key="t-widgets">Ventes</span>
+                    </a>
+                </li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Historiques</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" routerLink="/historiques" routerLinkActive="active">
+                        <i class="ri-archive-line"></i> <span data-key="t-widgets">Historiques</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+
+    <div class="sidebar-background"></div>
+</div>
