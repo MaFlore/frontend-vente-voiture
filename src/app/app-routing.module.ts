@@ -4,7 +4,6 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { VenteComponent } from './vente/vente.component';
 import { ModeleComponent } from './modele/modele.component';
 import { MarqueComponent } from './marque/marque.component';
-import { HistoriqueComponent } from './historique/historique.component';
 import { ClientComponent } from './client/client.component';
 import { VoitureComponent } from './voiture/voiture.component';
 
@@ -15,7 +14,6 @@ const routes: Routes = [
   { path: 'marques', component: MarqueComponent },
   { path: 'voitures', component: VoitureComponent },
   { path: 'ventes', component: VenteComponent },
-  { path: 'historiques', component: HistoriqueComponent }
 ];
 
 @NgModule({

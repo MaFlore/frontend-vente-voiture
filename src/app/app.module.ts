@@ -12,7 +12,6 @@ import { ClientComponent } from './client/client.component';
 import { ModeleComponent } from './modele/modele.component';
 import { MarqueComponent } from './marque/marque.component';
 import { VoitureComponent } from './voiture/voiture.component';
-import { HistoriqueComponent } from './historique/historique.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -28,7 +27,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModeleComponent,
     MarqueComponent,
     VoitureComponent,
-    HistoriqueComponent,
   ],
   imports: [
     BrowserModule,
