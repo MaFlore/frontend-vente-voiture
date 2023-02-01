@@ -25,6 +25,40 @@ export class AccueilComponent implements OnInit {
     private venteService: VenteService) { }
 
   ngOnInit(): void {
+    this.nombresOClients();
+    this.nombresOModeles();
+    this.nombresOMarques();
+    this.nombresOVoitures();
+    this.nombresOVentes();
   }
 
+  nombresOClients(): void {
+    this.clientService.count().subscribe(response=>{
+      this.nombresClients = response;
+    })
+  }
+
+  nombresOModeles(): void {
+    this.modeleService.count().subscribe(response=>{
+      this.nombresModeles = response;
+    })
+  }
+
+  nombresOMarques(): void {
+    this.marqueService.count().subscribe(response=>{
+      this.nombresMarques = response;
+    })
+  }
+
+  nombresOVoitures(): void {
+    this.voitureService.count().subscribe(response=>{
+      this.nombresVoitures = response;
+    })
+  }
+
+  nombresOVentes(): void {
+    this.venteService.count().subscribe(response=>{
+      this.nombresVentes = response;
+    })
+  }
 }
