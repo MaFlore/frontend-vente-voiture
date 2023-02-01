@@ -53,7 +53,7 @@
                                                         <td>{{ marque.code }}</td>
                                                         <td>{{ marque.libelle }}</td>
                                                         <td class="text-center">
-                                                            <div class="gap-1 flex-wrap">
+                                                            <div class="hstack gap-1 flex-wrap">
                                                                 <button type="button" class="btn btn-info">Détail</button>
                                                                 <button type="button" class="btn btn-warning">Modifier</button>
                                                                 <button type="button" class="btn btn-danger">Supprimer</button>
@@ -75,6 +75,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="voirFormulaireAjout">
     <div class="main-content">
 
@@ -130,6 +131,74 @@
                                         <div style="text-align: center;">
                                             <br>
                                             <button type="submit" [disabled]="marqueForm.invalid" class="btn btn-primary center">Ajouter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--end row-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="voirFormulaireModification">
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Marques</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Marques</a></li>
+                                    <li class="breadcrumb-item active">Modification d'une marque</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Modification d'une marque</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="form-check form-switch form-switch-right form-switch-md">
+                                        <button type="button" class="btn rounded-pill btn-primary" (click)="retour()">Retour</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card header -->
+                            <div class="card-body">
+                                <div class="live-preview">
+                                    <div style="text-align: center;" *ngIf="!erreur" class="alert alert-danger">{{ messageErreur }}</div>
+                                    <form class="form-horizontal" [formGroup]="marqueForm">
+                                        <div class="row g-3">
+                                            <div class="col-sm-6">
+                                                <label for="code" class="form-label">Code</label>
+                                                <input type="text" class="form-control" id="code" placeholder="Le code de la marque" name="code" formControlName="code" [(ngModel)]="marque.code" required>
+                                                <div class="alert alert-danger" [hidden]="code.valid || code.pristine && !code.touched ">Le code est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="libelle" class="form-label">Libelle</label>
+                                                <input type="text" class="form-control" id="libelle" placeholder="Le libelle de la marque" name="libelle" formControlName="libelle" [(ngModel)]="marque.libelle" required>
+                                                <div class="alert alert-danger" [hidden]="libelle.valid || libelle.pristine && !libelle.touched ">Le libelle est obligatoire</div>
+                                            </div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <br>
+                                            <button type="submit" [disabled]="marqueForm.invalid" class="btn btn-warning center">Modifier</button>
                                         </div>
                                     </form>
                                 </div>
