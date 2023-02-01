@@ -1,84 +1,177 @@
-<div class="main-content">
+<div *ngIf="voirListesVoitures">
+    <div class="main-content">
 
-    <div class="page-content">
-        <div class="container-fluid">
+        <div class="page-content">
+            <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Voitures</h4>
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Voitures</h4>
 
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Car Rental</a></li>
-                                <li class="breadcrumb-item active">Voitures</li>
-                            </ol>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Voitures</a></li>
+                                    <li class="breadcrumb-item active">Listes des voitures</li>
+                                </ol>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <!-- end page title -->
+                <!-- end page title -->
+                <!-- end row-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Listes des voitures</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="form-check form-switch form-switch-right form-switch-md">
+                                        <button type="button" class="btn rounded-pill btn-primary" (click)="afficherFormulaireAjouter()">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card header -->
 
-            <div class="row">
-                <div class="col-12">
-                    <h5 class="text-decoration-underline mb-3 pb-1">Listes des voitures</h5>
-                </div>
-            </div>
-            <!-- end row-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Listes des voitures</h4>
-                            <div class="flex-shrink-0">
-                                <div class="form-check form-switch form-switch-right form-switch-md">
+                            <div class="card-body">
+                                <div class="live-preview">
+                                    <div class="row">
+                                        <div class="table-responsive mt-4 mt-xl-0">
+                                            <table class="table table-success table-striped table-nowrap align-middle mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Numero identifiant</th>
+                                                        <th scope="col">Numero serie</th>
+                                                        <th scope="col">Date achat</th>
+                                                        <th scope="col">Couleur</th>
+                                                        <th scope="col">Marque</th>
+                                                        <th scope="col">Modèle</th>
+                                                        <th scope="col">Statut</th>
+                                                        <th scope="col">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let voiture of voitures ; let i = index ">
+                                                        <td class="fw-medium">{{ i+1 }}</td>
+                                                        <td>{{ voiture.numeroIdentifiant }}</td>
+                                                        <td>{{ voiture.numeroSerie }}</td>
+                                                        <td>{{ voiture.dateAchat | date: "yyyy-dd-MM"}}</td>
+                                                        <td>{{ voiture.couleur }}</td>
+                                                        <td>{{ voiture.marque.libelle }}</td>
+                                                        <td>{{ voiture.modele.libelle }}</td>
+                                                        <td>
+                                                            <span class="badge bg-danger" *ngIf="voiture.statut === false">Indisponible</span>
+                                                            <span class="badge bg-success" *ngIf="voiture.statut === true">Disponible</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="hstack gap-3 flex-wrap">
+                                                                <a href="javascript:void(0);" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
+                                                                <a href="javascript:void(0);" class="link-danger fs-15"><i class="ri-delete-bin-line"></i></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <td *ngIf="voitures.length == 0" class="text-danger">Pas de voitures pour l'instant. Cliquez sur le bouton -Ajouter- pour faire un ajout !</td>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
                                 </div>
                             </div>
                         </div>
-                        <!-- end card header -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                        <div class="card-body">
-                            <div class="live-preview">
-                                <div class="row">
-                                    <div class="table-responsive mt-4 mt-xl-0">
-                                        <table class="table table-success table-striped table-nowrap align-middle mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Numero identifiant</th>
-                                                    <th scope="col">Numero serie</th>
-                                                    <th scope="col">Date achat</th>
-                                                    <th scope="col">Couleur</th>
-                                                    <th scope="col">Marque</th>
-                                                    <th scope="col">Modèle</th>
-                                                    <th scope="col">Statut</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="fw-medium">01</td>
-                                                    <td>Basic Plan</td>
-                                                    <td>$860</td>
-                                                    <td>Nov 22, 2021</td>
-                                                    <td>$860</td>
-                                                    <td>Nov 22, 2021</td>
-                                                    <td>$860</td>
-                                                    <td><i class="ri-checkbox-circle-line align-middle text-success"></i> Subscribed</td>
-                                                    <td>
-                                                        <div class="hstack gap-3 flex-wrap">
-                                                            <a href="javascript:void(0);" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
-                                                            <a href="javascript:void(0);" class="link-danger fs-15"><i class="ri-delete-bin-line"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+<div *ngIf="voirFormulaireAjout">
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Voitures</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Voitures</a></li>
+                                    <li class="breadcrumb-item active">Ajout d'une voiture</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- end row-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Ajout d'une voiture</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="form-check form-switch form-switch-right form-switch-md">
+                                        <button type="button" class="btn rounded-pill btn-primary" (click)="retour()">Retour</button>
                                     </div>
                                 </div>
-                                <!--end col-->
+                            </div>
+                            <!-- end card header -->
+                            <div class="card-body">
+                                <div class="live-preview">
+                                    <div style="text-align: center;" *ngIf="!erreur" class="alert alert-danger">{{ messageErreur }}</div>
+                                    <form class="form-horizontal" [formGroup]="voitureForm" (ngSubmit)="ajouterVoiture()">
+                                        <div class="row g-3">
+                                            <div class="col-sm-6">
+                                                <label for="numeroIdentifiant" class="form-label">Numero identifiant</label>
+                                                <input type="text" class="form-control" id="numeroIdentifiant" placeholder="Le numero identifiant de la voiture" name="numeroIdentifiant" formControlName="numeroIdentifiant" [(ngModel)]="voiture.numeroIdentifiant" required>
+                                                <div class="alert alert-danger" [hidden]="numeroIdentifiant.valid || numeroIdentifiant.pristine && !numeroIdentifiant.touched ">Le numero identifiant est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="numeroSerie" class="form-label">Numero série</label>
+                                                <input type="text" class="form-control" id="numeroSerie" placeholder="Le numero serie identifiant de la voiture" name="numeroSerie" formControlName="numeroSerie" [(ngModel)]="voiture.numeroSerie" required>
+                                                <div class="alert alert-danger" [hidden]="numeroSerie.valid || numeroSerie.pristine && !numeroSerie.touched ">Le numero série est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="dateAchat" class="form-label">Date achat</label>
+                                                <input type="date" class="form-control" id="dateAchat" name="dateAchat" formControlName="dateAchat" [(ngModel)]="voiture.dateAchat" required>
+                                                <div class="alert alert-danger" [hidden]="dateAchat.valid || dateAchat.pristine && !dateAchat.touched ">La date d'achat est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="couleur" class="form-label">Couleur</label>
+                                                <input type="text" class="form-control" id="couleur" placeholder="La couleur de la voiture" name="couleur" formControlName="couleur" [(ngModel)]="voiture.couleur" required>
+                                                <div class="alert alert-danger" [hidden]="couleur.valid || couleur.pristine && !couleur.touched ">La couleur est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="marque">Marque</label>
+                                                <select class="form-select" id="marque" name="marque" [(ngModel)]="voiture.marque" formControlName="marque">
+                                                  <option  *ngFor="let marque of marques" [ngValue]="marque">{{ marque.libelle }}</option>
+                                                </select>
+                                                <div class="alert alert-danger" [hidden]="marque.valid || marque.pristine && !marque.touched ">La marque est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="modele">Modèle</label>
+                                                <select class="form-select" id="modele" [(ngModel)]="voiture.modele" formControlName="modele">
+                                                  <option  *ngFor="let modele of modeles" [ngValue]="modele">{{ modele.libelle }}</option>
+                                                </select>
+                                                <div class="alert alert-danger" [hidden]="modele.valid || modele.pristine && !modele.touched ">Le modèle est obligatoire</div>
+                                            </div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <br>
+                                            <button type="submit" [disabled]="voitureForm.invalid" class="btn btn-primary center">Ajouter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--end row-->
                             </div>
                         </div>
                     </div>
