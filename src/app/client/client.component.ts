@@ -111,4 +111,61 @@ export class ClientComponent implements OnInit {
       console.log(error)
     })
   }
+
+  //Méthode de modification d'un client à partir de ClientService
+  modifierClient(): void {
+    this.clientService.updateClient(this.client).subscribe(
+      (response) =>{
+        console.log(response);
+        if(response.id > 0) {
+          this.retour();
+          this.listesClients();
+        }
+        else{
+          this.erreur = false;
+          this.messageErreur = "Erreur lors de la modification, client déjà existant";
+          this.afficherFormulaireModifier(this.client.id);
+        }
+    },
+    (error) =>{
+      console.log(error)
+    })
+  }
+
+  //Méthode de suppression d'un client par la clé primaire  à partir de ClientService
+  supprimerParClePrimaire(id: number): void {
+    this.clientService.deleteById(id).subscribe(response=>{
+      console.log(response);
+      // for (let index = 0; index < this.medicaments.length; index++) {
+      //   if (index == this.medicament.id) {
+      //     this.medicaments.splice(id,1);
+      //   }
+      // }
+      this.listesClients();
+    });
+  }
+
+  //Méthode de détail d'un client à partir de ClientService
+  detailClient(id: number): void {
+    console.log(id)
+    this.clientService.findById(id).subscribe(response=>{
+      this.client = response;
+    })
+  }
+
+  //Méthode d'affichage de la page de detail d'un client
+  afficherPageDetail(id: number): void {
+    this.voirListesClients = false;
+    this.voirFormulaireAjout = false;
+    this.voirFormulaireModification = true;
+    this.voirPageDetail = false;
+    this.detailClient(id);
+  }
+
+  //Méthode d'affichage de la page de modification d'un client
+  afficherFormulaireModifier(id: number): void {
+    this.voirListesClients = false;
+    this.voirFormulaireModification = false;
+    this.detailClient(id);
+  }
 }

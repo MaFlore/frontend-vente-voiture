@@ -60,9 +60,31 @@
                                                         <td>{{ client.password }}</td>
                                                         <td class="text-center">
                                                             <div class="hstack gap-1 flex-wrap">
-                                                                <button type="button" class="btn btn-info">Détail</button>
-                                                                <button type="button" class="btn btn-warning">Modifier</button>
-                                                                <button type="button" class="btn btn-danger">Supprimer</button>
+                                                                <button type="button" class="btn btn-info" (click)="afficherPageDetail(client.id)">Détail</button>
+                                                                <button type="button" class="btn btn-warning" (click)="afficherFormulaireModifier(client.id)">Modifier</button>
+                                                                <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#myModal">Supprimer</button>
+                                                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title center" id="myModalLabel">Suppression d'un client</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body center">
+                                                                                <p>Cette action est irréversible.</p>
+                                                                                <p>Vous êtes sûr de vouloir supprimer ce client ?</p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                                                                                <button type="button" class="btn btn-danger " (click)="supprimerParClePrimaire(client.id)" data-bs-dismiss="modal">Confirmez</button>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
+                                                                <!-- /.modal -->
                                                             </div>
                                                         </td>
                                                     </tr>
