@@ -91,4 +91,61 @@ export class MarqueComponent implements OnInit {
     })
   }
 
+  //Méthode de modification d'une marque à partir de MarqueService
+  modifierMarque(): void {
+    this.marqueService.updateMarque(this.marque).subscribe(
+      (response) =>{
+        console.log(response);
+        if(response.id > 0) {
+          this.retour();
+          this.listesMarques();
+        }
+        else{
+          this.erreur = false;
+          this.messageErreur = "Erreur lors de la modification, marque déjà existante";
+          this.afficherFormulaireModifier(this.marque.id);
+        }
+    },
+    (error) =>{
+      console.log(error)
+    })
+  }
+
+
+  //Méthode de suppression d'une Marque par la clé primaire  à partir de MarqueService
+  supprimerParClePrimaire(id: number): void {
+    this.marqueService.deleteById(id).subscribe(response=>{
+      console.log(response);
+      // for (let index = 0; index < this.medicaments.length; index++) {
+      //   if (index == this.medicament.id) {
+      //     this.medicaments.splice(id,1);
+      //   }
+      // }
+      this.listesMarques();
+    });
+  }
+
+  //Méthode de détail d'une Marque à partir de MarqueService
+  detailMarque(id: number): void {
+    console.log(id)
+    this.marqueService.findById(id).subscribe(response=>{
+      this.marque = response;
+    })
+  }
+
+  //Méthode d'affichage de la page de detail d'une Marque
+  afficherPageDetail(id: number): void {
+    this.voirListesMarques = false;
+    this.voirFormulaireAjout = false;
+    this.voirFormulaireModification = true;
+    this.voirPageDetail = false;
+    this.detailMarque(id);
+  }
+
+  //Méthode d'affichage de la page de modification d'une marque
+  afficherFormulaireModifier(id: number): void {
+    this.voirListesMarques = false;
+    this.voirFormulaireModification = false;
+    this.detailMarque(id);
+  }
 }
