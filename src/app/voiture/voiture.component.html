@@ -182,7 +182,7 @@
     </div>
 </div>
 
-<div *ngIf="voirFormulaireModification">
+<div *ngIf="!voirFormulaireModification">
     <div class="main-content">
 
         <div class="page-content">
@@ -265,6 +265,88 @@
                                     </form>
                                 </div>
                                 <!--end row-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!voirPageDetail">
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Voitures</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Voitures</a></li>
+                                    <li class="breadcrumb-item active">Détail d'une voiture</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Détail d'une voiture</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="form-check form-switch form-switch-right form-switch-md">
+                                        <button type="button" class="btn rounded-pill btn-primary" (click)="retour()">Retour</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card header -->
+                            <div class="card-body">
+                                <div class="table-card">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="fw-medium">Numero identifiant</td>
+                                                <td>{{ voiture.numeroIdentifiant }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-medium">Numero série</td>
+                                                <td>{{ voiture.numeroSerie }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-medium">Date achat</td>
+                                                <td>{{ voiture.dateAchat | date: "yyyy-dd-MM" }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-medium">Couleur</td>
+                                                <td>{{ voiture.couleur }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-medium">Statut</td>
+                                                <td><span class="badge bg-danger" *ngIf="voiture.statut === false">Indisponible</span>
+                                                    <span class="badge bg-success" *ngIf="voiture.statut === true">Disponible</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-medium">Marque</td>
+                                                <td>{{ voiture.marque.libelle }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-medium">Modèle</td>
+                                                <td>{{ voiture.modele.libelle }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--end table-->
+                                </div>
                             </div>
                         </div>
                     </div>
