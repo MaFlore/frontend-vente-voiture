@@ -82,6 +82,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="voirFormulaireAjout">
     <div class="main-content">
 
@@ -152,6 +153,89 @@
                                         <div style="text-align: center;">
                                             <br>
                                             <button type="submit" [disabled]="clientForm.invalid" class="btn btn-primary center">Ajouter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--end row-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="voirFormulaireModification">
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Clients</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Clients</a></li>
+                                    <li class="breadcrumb-item active">Modification d'un client</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Modification d'un client</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="form-check form-switch form-switch-right form-switch-md">
+                                        <button type="button" class="btn rounded-pill btn-primary" (click)="retour()">Retour</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card header -->
+                            <div class="card-body">
+                                <div class="live-preview">
+                                    <div style="text-align: center;" *ngIf="!erreur" class="alert alert-danger">{{ messageErreur }}</div>
+                                    <form class="form-horizontal" [formGroup]="clientForm">
+                                        <div class="row g-3">
+                                            <div class="col-sm-6">
+                                                <label for="nom" class="form-label">Nom</label>
+                                                <input type="text" class="form-control" id="nom" placeholder="Le nom du client" name="nom" formControlName="nom" [(ngModel)]="client.nom" required>
+                                                <div class="alert alert-danger" [hidden]="nom.valid || nom.pristine && !nom.touched ">Le nom est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="prenom" class="form-label">Prenom</label>
+                                                <input type="text" class="form-control" id="prenom" placeholder="Le prenom du client" name="prenom" formControlName="prenom" [(ngModel)]="client.prenom" required>
+                                                <div class="alert alert-danger" [hidden]="prenom.valid || prenom.pristine && !prenom.touched ">Le prenom est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="telephone" class="form-label">Téléphone</label>
+                                                <input type="text" class="form-control" id="telephone" placeholder="Le numero de telephone du client" name="telephone" formControlName="telephone" [(ngModel)]="client.telephone" required>
+                                                <div class="alert alert-danger" [hidden]="telephone.valid || telephone.pristine && !telephone.touched ">Le numero de telephone est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="username" class="form-label">Username</label>
+                                                <input type="text" class="form-control" id="username" placeholder="Le username du client" name="username" formControlName="username" [(ngModel)]="client.username" required>
+                                                <div class="alert alert-danger" [hidden]="username.valid || username.pristine && !username.touched ">Le username est obligatoire</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="password" placeholder="Le password du client" name="password" formControlName="password" [(ngModel)]="client.password" required>
+                                                <div class="alert alert-danger" [hidden]="password.valid || password.pristine && !password.touched ">Le password est obligatoire</div>
+                                            </div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <br>
+                                            <button type="submit" [disabled]="clientForm.invalid" class="btn btn-warning center">Modifier</button>
                                         </div>
                                     </form>
                                 </div>
