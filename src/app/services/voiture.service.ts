@@ -36,6 +36,12 @@ export class VoitureService {
   }
 
   //Affichage de toutes les occurrences de voitures;
+  //url: http://localhost:9002/api/voitures/statut
+  getAllByStatut(): Observable<Array<Voiture>>{
+    return this.httpClient.get<Array<Voiture>>(this.url + 'voitures/statut');
+  }
+
+  //Affichage de toutes les occurrences de voitures;
   //url: http://localhost:9002/api/voitures
   getAll(): Observable<Array<Voiture>>{
     return this.httpClient.get<Array<Voiture>>(this.url + 'voitures');

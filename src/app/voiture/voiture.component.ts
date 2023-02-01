@@ -47,18 +47,6 @@ export class VoitureComponent implements OnInit {
     this.listesModeles()
   }
 
-  changeModele(e: any) {
-    this.modele?.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
-
-  changeMarque(e: any) {
-    this.marque?.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
-
   //Méthode de la liste de toutes les marques à partir de VoitureService
   listesMarques():void{
     this.marqueService.getAll().subscribe(response=>{
