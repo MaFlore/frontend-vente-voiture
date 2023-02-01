@@ -227,7 +227,7 @@
                             <div class="card-body">
                                 <div class="live-preview">
                                     <div style="text-align: center;" *ngIf="!erreur" class="alert alert-danger">{{ messageErreur }}</div>
-                                    <form class="form-horizontal" [formGroup]="clientForm">
+                                    <form class="form-horizontal" [formGroup]="clientForm" (ngSubmit)="modifierClient()">
                                         <div class="row g-3">
                                             <div class="col-sm-6">
                                                 <label for="nom" class="form-label">Nom</label>

@@ -205,7 +205,7 @@
                             <div class="card-body">
                                 <div class="live-preview">
                                     <div style="text-align: center;" *ngIf="!erreur" class="alert alert-danger">{{ messageErreur }}</div>
-                                    <form class="form-horizontal" [formGroup]="marqueForm">
+                                    <form class="form-horizontal" [formGroup]="marqueForm" (ngSubmit)="modifierMarque()">
                                         <div class="row g-3">
                                             <div class="col-sm-6">
                                                 <label for="code" class="form-label">Code</label>

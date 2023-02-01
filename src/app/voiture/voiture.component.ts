@@ -142,4 +142,61 @@ export class VoitureComponent implements OnInit {
     })
   }
 
+  //Méthode de modification d'une voiture à partir de VoitureService
+  modifierVoiture(): void {
+    this.modeleService.updateModele(this.modele).subscribe(
+      (response) =>{
+        console.log(response);
+        if(response.id > 0) {
+          this.retour();
+          this.listesVoitures();
+        }
+        else{
+          this.erreur = false;
+          this.messageErreur = "Erreur lors de la modification, voiture déjà existante";
+          this.afficherFormulaireModifier(this.modele.id);
+        }
+    },
+    (error) =>{
+      console.log(error)
+    })
+  }
+
+
+  //Méthode de suppression d'une Voiture par la clé primaire  à partir de VoitureService
+  supprimerParClePrimaire(id: number): void {
+    this.voitureService.deleteById(id).subscribe(response=>{
+      console.log(response);
+      // for (let index = 0; index < this.medicaments.length; index++) {
+      //   if (index == this.medicament.id) {
+      //     this.medicaments.splice(id,1);
+      //   }
+      // }
+      this.listesVoitures();
+    });
+  }
+
+  //Méthode de détail d'une Voiture à partir de VoitureService
+  detailVoiture(id: number): void {
+    console.log(id)
+    this.voitureService.findById(id).subscribe(response=>{
+      this.voiture = response;
+    })
+  }
+
+  //Méthode d'affichage de la page de detail d'une Voiture
+  afficherPageDetail(id: number): void {
+    this.voirListesVoitures = false;
+    this.voirFormulaireAjout = false;
+    this.voirFormulaireModification = true;
+    this.voirPageDetail = false;
+    this.detailVoiture(id);
+  }
+
+  //Méthode d'affichage de la page de modification d'une Voiture
+  afficherFormulaireModifier(id: number): void {
+    this.voirListesVoitures = false;
+    this.voirFormulaireModification = false;
+    this.detailVoiture(id);
+  }
 }

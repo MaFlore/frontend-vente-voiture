@@ -16,7 +16,6 @@ export class VenteComponent implements OnInit {
 
   voirListesVentes: boolean = true;
   voirFormulaireAjout: boolean = false;
-  voirFormulaireModification: boolean = true;
 
   voirPageDetail: boolean = true;
 
@@ -68,7 +67,6 @@ export class VenteComponent implements OnInit {
   afficherFormulaireAjouter(): void {
     this.voirListesVentes = false;
     this.voirFormulaireAjout = true;
-    this.voirFormulaireModification;
     this.vente = new Vente();
   }
 
@@ -92,7 +90,6 @@ export class VenteComponent implements OnInit {
   retour(): void {
     this.voirListesVentes = true;
     this.voirFormulaireAjout = false;
-    this.voirFormulaireModification = true;
     this.voirPageDetail = true;
     this.erreur = true;
   }
@@ -125,6 +122,35 @@ export class VenteComponent implements OnInit {
     (error) =>{
       console.log(error)
     })
+  }
+
+  //Méthode de suppression d'une Vente par la clé primaire  à partir de VenteService
+  supprimerParClePrimaire(id: number): void {
+    this.venteService.deleteById(id).subscribe(response=>{
+      console.log(response);
+      // for (let index = 0; index < this.medicaments.length; index++) {
+      //   if (index == this.medicament.id) {
+      //     this.medicaments.splice(id,1);
+      //   }
+      // }
+      this.listesVentes();
+    });
+  }
+
+  //Méthode de détail d'une Vente à partir de VenteService
+  detailVente(id: number): void {
+    console.log(id)
+    this.venteService.findById(id).subscribe(response=>{
+      this.vente = response;
+    })
+  }
+
+  //Méthode d'affichage de la page de detail d'une Vente
+  afficherPageDetail(id: number): void {
+    this.voirListesVentes = false;
+    this.voirFormulaireAjout = false;
+    this.voirPageDetail = false;
+    this.detailVente(id);
   }
 
 }

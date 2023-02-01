@@ -59,9 +59,29 @@
                                                         <td>{{ vente.voiture.numeroSerie }}</td>
                                                         <td class="text-center">
                                                             <div class="hstack gap-1 flex-wrap">
-                                                                <button type="button" class="btn btn-info">Détail</button>
-                                                                <button type="button" class="btn btn-warning">Modifier</button>
-                                                                <button type="button" class="btn btn-danger">Supprimer</button>
+                                                                <button type="button" class="btn btn-info" (click)="afficherPageDetail(vente.id)">Détail</button>
+                                                                <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#myModal">Supprimer</button>
+                                                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title center" id="myModalLabel">Suppression d'une vente</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body center">
+                                                                                <p>Cette action est irréversible.</p>
+                                                                                <p>Vous êtes sûr de vouloir supprimer cette voiture ?</p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                                                                                <button type="button" class="btn btn-danger " (click)="supprimerParClePrimaire(vente.id)" data-bs-dismiss="modal">Confirmez</button>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -150,89 +170,6 @@
                                         <div style="text-align: center;">
                                             <br>
                                             <button type="submit" [disabled]="venteForm.invalid" class="btn btn-primary center">Ajouter</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!--end row-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div *ngIf="!voirFormulaireModification">
-    <div class="main-content">
-
-        <div class="page-content">
-            <div class="container-fluid">
-
-                <!-- start page title -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Ventes</h4>
-
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Ventes</a></li>
-                                    <li class="breadcrumb-item active">Modification d'une vente</li>
-                                </ol>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- end page title -->
-                <!-- end row-->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header align-items-center d-flex">
-                                <h4 class="card-title mb-0 flex-grow-1">Modification d'une vente</h4>
-                                <div class="flex-shrink-0">
-                                    <div class="form-check form-switch form-switch-right form-switch-md">
-                                        <button type="button" class="btn rounded-pill btn-primary" (click)="retour()">Retour</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end card header -->
-                            <div class="card-body">
-                                <div class="live-preview">
-                                    <div style="text-align: center;" *ngIf="!erreur" class="alert alert-danger">{{ messageErreur }}</div>
-                                    <form class="form-horizontal" [formGroup]="venteForm">
-                                        <div class="row g-3">
-                                            <div class="col-sm-6">
-                                                <label for="dateVente" class="form-label">Date vente</label>
-                                                <input type="date" class="form-control" id="dateVente" name="dateVente" formControlName="dateVente" [(ngModel)]="vente.dateVente" required>
-                                                <div class="alert alert-danger" [hidden]="dateVente.valid || dateVente.pristine && !dateVente.touched ">La date de vente est obligatoire</div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label for="montant" class="form-label">Montant</label>
-                                                <input type="number" class="form-control" id="montant" placeholder="Le montant de la vente" name="montant" formControlName="montant" [(ngModel)]="vente.montant" required>
-                                                <div class="alert alert-danger" [hidden]="montant.valid || montant.pristine && !montant.touched ">Le montant est obligatoire</div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label for="client">Client</label>
-                                                <select class="form-select" id="client" name="client" [(ngModel)]="vente.client" formControlName="client">
-                                              <option  *ngFor="let client of clients" [ngValue]="client">{{ client.nom }}</option>
-                                            </select>
-                                                <div class="alert alert-danger" [hidden]="client.valid || client.pristine && !client.touched ">Le client est obligatoire</div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label for="voiture">Voiture</label>
-                                                <select class="form-select" id="voiture" name="voiture" [(ngModel)]="vente.voiture" formControlName="voiture">
-                                              <option  *ngFor="let voiture of voitures" [ngValue]="voiture">{{ voiture.numeroSerie }}</option>
-                                            </select>
-                                                <div class="alert alert-danger" [hidden]="voiture.valid || voiture.pristine && !voiture.touched ">La voiture est obligatoire</div>
-                                            </div>
-                                        </div>
-                                        <div style="text-align: center;">
-                                            <br>
-                                            <button type="submit" [disabled]="venteForm.invalid" class="btn btn-warning center">Modifier</button>
                                         </div>
                                     </form>
                                 </div>

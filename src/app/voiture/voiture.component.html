@@ -68,9 +68,31 @@
                                                         </td>
                                                         <td class="text-center">
                                                             <div class="hstack gap-1 flex-wrap">
-                                                                <button type="button" class="btn btn-info">Détail</button>
-                                                                <button type="button" class="btn btn-warning">Modifier</button>
-                                                                <button type="button" class="btn btn-danger">Supprimer</button>
+                                                                <button type="button" class="btn btn-info" (click)="afficherPageDetail(voiture.id)">Détail</button>
+                                                                <button type="button" class="btn btn-warning" (click)="afficherFormulaireModifier(voiture.id)">Modifier</button>
+                                                                <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#myModal">Supprimer</button>
+                                                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title center" id="myModalLabel">Suppression d'une voiture</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body center">
+                                                                                <p>Cette action est irréversible.</p>
+                                                                                <p>Vous êtes sûr de vouloir supprimer cette voiture ?</p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                                                                                <button type="button" class="btn btn-danger " (click)="supprimerParClePrimaire(voiture.id)" data-bs-dismiss="modal">Confirmez</button>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
+                                                                <!-- /.modal -->
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -221,7 +243,7 @@
                             <div class="card-body">
                                 <div class="live-preview">
                                     <div style="text-align: center;" *ngIf="!erreur" class="alert alert-danger">{{ messageErreur }}</div>
-                                    <form class="form-horizontal" [formGroup]="voitureForm">
+                                    <form class="form-horizontal" [formGroup]="voitureForm" (ngSubmit)="modifierVoiture()">
                                         <div class="row g-3">
                                             <div class="col-sm-6">
                                                 <label for="numeroIdentifiant" class="form-label">Numero identifiant</label>

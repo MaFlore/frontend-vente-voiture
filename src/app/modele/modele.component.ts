@@ -30,11 +30,11 @@ export class ModeleComponent implements OnInit {
       code: new FormControl(this.modele.code, [Validators.required]),
       libelle: new FormControl(this.modele.libelle, [Validators.required]),
     })
-    this.listesMarques();
+    this.listesModeles();
   }
 
   //Méthode de la liste de tous les modeles à partir de ModeleService
-  listesMarques():void{
+  listesModeles():void{
     this.modeleService.getAll().subscribe(response=>{
       this.modeles = response;
     })
@@ -89,6 +89,64 @@ export class ModeleComponent implements OnInit {
     (error) =>{
       console.log(error)
     })
+  }
+
+  //Méthode de modification d'un Modele à partir de ModeleService
+  modifierModele(): void {
+    this.modeleService.updateModele(this.modele).subscribe(
+      (response) =>{
+        console.log(response);
+        if(response.id > 0) {
+          this.retour();
+          this.listesModeles();
+        }
+        else{
+          this.erreur = false;
+          this.messageErreur = "Erreur lors de la modification, modèle déjà existant";
+          this.afficherFormulaireModifier(this.modele.id);
+        }
+    },
+    (error) =>{
+      console.log(error)
+    })
+  }
+
+
+  //Méthode de suppression d'une Modele par la clé primaire  à partir de ModeleService
+  supprimerParClePrimaire(id: number): void {
+    this.modeleService.deleteById(id).subscribe(response=>{
+      console.log(response);
+      // for (let index = 0; index < this.medicaments.length; index++) {
+      //   if (index == this.medicament.id) {
+      //     this.medicaments.splice(id,1);
+      //   }
+      // }
+      this.listesModeles();
+    });
+  }
+
+  //Méthode de détail d'un Modele à partir de ModeleService
+  detailModele(id: number): void {
+    console.log(id)
+    this.modeleService.findById(id).subscribe(response=>{
+      this.modele = response;
+    })
+  }
+
+  //Méthode d'affichage de la page de detail d'une Modèle
+  afficherPageDetail(id: number): void {
+    this.voirListesModeles = false;
+    this.voirFormulaireAjout = false;
+    this.voirFormulaireModification = true;
+    this.voirPageDetail = false;
+    this.detailModele(id);
+  }
+
+  //Méthode d'affichage de la page de modification d'un Modèle
+  afficherFormulaireModifier(id: number): void {
+    this.voirListesModeles = false;
+    this.voirFormulaireModification = false;
+    this.detailModele(id);
   }
 
 }
